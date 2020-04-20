@@ -8,9 +8,6 @@ def bouble_sort(seq):
     return seq
 
 
-
-
-
 def test_bouble_sort():
     seq = [11, 3, 28, 43 , 9 , 4]
     assert(bouble_sort(seq) == sorted(seq))
