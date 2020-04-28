@@ -9,11 +9,10 @@ class Stack(object):
         self.items.append(value)
 
     def pop(self):
-        value = self.items.pop()
-        if value is not None:
-            return value
-        else:
-            print("Stack is empty.")
+        if Stack.isEmpty(self):
+            print("비어있음")
+            return
+        else: return self.items.pop()
 
     def size(self):
         return len(self.items)
