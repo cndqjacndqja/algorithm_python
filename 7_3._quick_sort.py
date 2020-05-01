@@ -5,12 +5,13 @@ def partition(seq, start, end):
     done = False
     while not done:
         while left <= right and seq[left] <= pivot: left += 1
-        while left <= right and pivot < seq[right]: right -= 1
+        while left <= right and pivot < seq[right]:
+            right -= 1
         if right < left: done = True
-        else: seq[right], seq[right] = seq[right], seq[left]
+        else:
+            seq[left], seq[right] = seq[right], seq[left]
     seq[start], seq[right] = seq[right], seq[start]
-    print("pivot = {}, left = {}, right = {}, seq = {} " \
-          .format(pivot, left, right, seq))
+    print(seq)
     return right
 
 
