@@ -25,13 +25,14 @@ def test_testing_floats():
     number3 = -1
     number4 = 5/4
     number6 = 6
-    print(rounding_floats(1.245, 2))
     # assert(rounding_floats(number1, number2) == 1.2)
     # assert(rounding_floats(number1*10, number3) == 10)
     # assert(float_to_fractions(number1) == number4)
     # assert (get_denominator(number2, number6) == number6)
     # assert (get_numerator(number2, number6) == number2)
+    print(rounding_floats(1.236, 2))
     print("테스트 통과!!!!")
+
 
 if __name__ == "__main__":
     test_testing_floats()

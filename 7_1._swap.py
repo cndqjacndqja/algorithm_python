@@ -5,3 +5,11 @@ if __name__ == "__main__":
     print(a,b)
 
     print(swap(a,b))
+
+    list = []
+
+    list.insert(0, 1)
+    list.insert(0, 2)
+
+
+    print(list[1])
