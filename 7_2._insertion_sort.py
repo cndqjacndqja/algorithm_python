@@ -8,7 +8,6 @@ def insertion_sort(seq):
     return seq
 
 
-
 def test_insertion_sort():
     seq = [11, 3, 28, 43, 9, 4]
     assert (insertion_sort(seq) == sorted(seq))
