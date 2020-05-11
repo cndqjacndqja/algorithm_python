@@ -1,6 +1,15 @@
 
+def swap(a, b):
+    temp = a
+    a = b
+    b = temp
+
+
 if __name__ == "__main__":
-    s = "123"
-    s2 = "".join(s)
-    print(s[::-1])
-    print(s2[-1])
+    a = 456
+    b = 123
+
+    temp = a
+    a = b
+    b = temp
+    print(a, b)
