@@ -1,15 +1,10 @@
 
-def swap(a, b):
-    temp = a
-    a = b
-    b = temp
 
 
 if __name__ == "__main__":
-    a = 456
-    b = 123
+   seq = []
+   seq.append(1)
+   seq.append(2)
+   seq.append(3)
 
-    temp = a
-    a = b
-    b = temp
-    print(a, b)
+   print(seq)
