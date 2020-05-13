@@ -1,10 +1,11 @@
-
-
+from string import ascii_lowercase
 
 if __name__ == "__main__":
-   seq = []
-   seq.append(1)
-   seq.append(2)
-   seq.append(3)
-
-   print(seq)
+   a =1
+   list = list(ascii_lowercase)
+   b = []
+   print(list)
+   print(len(list))
+   for i in range(0, 26):
+      b.append(0)
+   print(b)
