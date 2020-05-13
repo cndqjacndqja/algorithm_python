@@ -12,5 +12,4 @@ if __name__ == "__main__":
             if test[i] == list[j]:
                 result[j] += 1
 
-    for i in range(0, len(result)):
-        print(result[i], end = ' ')
+    print(result, end =' ')
