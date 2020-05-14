@@ -1,11 +1,7 @@
 from string import ascii_lowercase
-
+import sys
 if __name__ == "__main__":
-   a =1
-   list = list(ascii_lowercase)
-   b = []
-   print(list)
-   print(len(list))
-   for i in range(0, 26):
-      b.append(0)
-   print(b)
+   test = ".".join(input()).split(".")
+   print(test)
+   result = [0,0,0,0]
+   print(result)
