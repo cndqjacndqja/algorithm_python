@@ -1,6 +1,7 @@
 from string import ascii_lowercase
 import sys
+
 if __name__ == "__main__":
-   test = ["a"]
-   test[0] += "b"
-   print(test)
+    List = [0,1,2]
+    for i in List:
+        print(i)
