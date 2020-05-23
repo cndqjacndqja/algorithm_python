@@ -1,7 +1,15 @@
-from string import ascii_lowercase
-import sys
+
 
 if __name__ == "__main__":
-    List = [0,1,2]
-    for i in List:
-        print(i)
+    def solution(num):
+        for i in range(0, 100):
+            num1 = num
+            List = ",".join(str(num1)).split(",")
+            length = len(List)
+
+            test = False
+            count = 0
+            print(List)
+
+            num+=1
+    solution(1986)
