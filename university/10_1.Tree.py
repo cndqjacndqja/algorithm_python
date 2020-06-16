@@ -8,6 +8,7 @@ class Tree:
 root = None
 level_q = []
 
+
 def levelorder_traverse(tree):
     global level_q
     level_q.append(tree)
@@ -16,6 +17,7 @@ def levelorder_traverse(tree):
         print("visited node = {0}".format(visit_node.data))
         if visit_node.left_child is not None: level_q.append(visit_node.left_child)
         if visit_node.right_child is not None: level_q.append(visit_node.right_child)
+
 
 def init_Tree():
     global root

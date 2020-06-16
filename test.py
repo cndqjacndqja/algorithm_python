@@ -1,11 +1,20 @@
 def permutation(n, r):
     num = 1
-    for i in range(n, r-1, -1):
-        num *= i
-    return num
+    m = 1
+    c = 1
 
-def test(v = 10, v2 = 20 , *v3):
-    pass
+    if n - r is 0:
+        for i in range(n, 0, -1):
+            num *= i
+        return num
+    else:
+        for i in range(n, 0, -1):
+            m *= i
+        for j in range(n-r, 0, -1):
+            c *= j
+        return m//c
+
+
 if __name__ == "__main__":
 
     print("총 데이터의 갯수를 입력하시오")
@@ -16,6 +25,5 @@ if __name__ == "__main__":
 
     print(permutation(n, r))
 
-    test(1,2,3,4,5)
 
 
