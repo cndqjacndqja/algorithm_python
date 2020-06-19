@@ -1,39 +1,45 @@
-def bfs(graph, root):
-    visited = []
-    queue = [root]
-
+def BFS(graph, start_node):
+    visit = list()
+    queue = list()
+    queue.append(start_node)
     while queue:
-        current = queue.pop(0)
-        if current not in visited:
-            visited.append(current)
-            print(current)
-            for i in graph[current]:
-                queue.append(i)
+        node = queue.pop(0)
+        if node not in visit:
+            visit.append(node)
+            queue.extend(graph[node])
+    return visit
 
 
-def dfs(graph, root):
-    visited = []
-    queue = [root]
-
-    while queue:
-        current = queue.pop(-1)
-        if current not in visited:
-            visited.append(current)
-            print(current)
-            for i in graph[current]:
-                queue.append(i)
+def DFS(graph, start_node):
+    visit = list()
+    stack = list()
+    stack.append(start_node)
+    while stack:
+        node = stack.pop()
+        if node not in visit:
+            visit.append(node)
+            stack.extend(graph[node])
+    return visit
 
 
 if __name__ == "__main__":
 
-    graph = [
-        [1, 2],
-        [0, 3],
-        [0, 4, 5],
-        [1],
-        [2, 6],
-        [2],
-        [4]
-    ]
+    graph = {
+        'A': ['B'],
+        'B': ['A', 'C', 'H'],
+        'C': ['B', 'D'],
+        'D': ['C', 'E', 'G'],
+        'E': ['D', 'F'],
+        'F': ['E'],
+        'G': ['D'],
+        'H': ['B', 'I', 'J', 'M'],
+        'I': ['H'],
+        'J': ['H', 'K'],
+        'K': ['J', 'L'],
+        'L': ['K'],
+        'M': ['H']
+    }
 
-    dfs(graph, 0)
+    print("BFS: {0}".format(BFS(graph, 'A')))
+    print("DFS: {0}".format(DFS(graph, 'A')))
+
