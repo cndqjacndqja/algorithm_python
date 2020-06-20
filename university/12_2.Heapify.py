@@ -10,7 +10,7 @@ class Heapify(object):
 
     def __max_heapify(self, i):
         largest = i
-        left = self.right_child(i)
+        left = self.left_child(i)
         right = self.right_child(i)
         n = len(self.data)
 
@@ -20,7 +20,17 @@ class Heapify(object):
         if i is not largest:
             self.data[i], self.data[largest] = self.data[largest], self.data[i]
             print("index {0} = {1}".format(i, self.data))
-            self.__max_heapify(largest)
+            self.__max_heapify(largest) #바꾼 것의 자식과도 비교해야 함.
+
+    def extract_max(self):
+        n = len(self.data)
+        max_element = self.data[0]
+
+        self.data[0] = self.data[n-1]
+        self.data = self.data[:n -1]
+        self.__max_heapify(0)
+        return max_element
+    
 
 if __name__ == "__main__":
     list = [3, 2, 5, 1, 7, 8, 2]
