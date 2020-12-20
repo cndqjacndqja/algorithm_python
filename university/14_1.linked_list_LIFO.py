@@ -24,6 +24,7 @@ class LinkedListLIFO(object):
             print(node.value, end=" ")
             node = node.pointer
         print()
+
     def _delete(self, prev, node):
         self.length -= 1
         if not prev: self.head = node.pointer
@@ -62,6 +63,7 @@ class LinkedListLIFO(object):
         node, prev, found = self._find_by_value(value)
         if found: self._delete(prev, node)
         else: print("값 {0}에 해당하는 노드 없음.".format(value))
+
 
 if __name__=="__main__":
     ll = LinkedListLIFO()

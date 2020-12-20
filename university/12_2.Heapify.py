@@ -1,3 +1,5 @@
+import heapq
+
 class Heapify(object):
     def __init__(self, data = None):
         self.data = data
@@ -33,5 +35,8 @@ class Heapify(object):
     
 
 if __name__ == "__main__":
-    list = [3, 2, 5, 1, 7, 8, 2]
+    list = [1,2,3,4,5,6]
     Heapify(list)
+    test = heapq.heapify(list)
+    print(test)
+
