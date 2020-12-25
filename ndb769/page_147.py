@@ -3,8 +3,8 @@ from _collections import deque
 
 def bfs(graph, start, visited):
     queue = deque([start])
-
     visited[start] = True
+
     while queue:
         v = queue.popleft()
         print(v, end=' ')
@@ -28,4 +28,4 @@ graph = [
 
 visited = [False] * 9
 
-bfs2(graph, 1, visited)
+bfs(graph, 1, visited)
