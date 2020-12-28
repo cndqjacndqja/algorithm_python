@@ -1,12 +1,5 @@
 from _collections import deque
 
-
-def see(graph):
-    print()
-    for i in graph:
-        print(i)
-
-
 t = int(input())
 
 dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
