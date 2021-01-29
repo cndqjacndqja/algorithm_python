@@ -8,23 +8,12 @@ visited = [[0 for _ in range(m)] for _ in range(n)]
 item = [[1 for _ in range(m)] for _ in range(n)]
 
 
-def print_data(name,data):
-    print(name)
-    for i in data:
-        print(i)
-
-    print("-----")
-
-
 def bfs():
     q = deque()
     q.append((0, 0))
     visited[0][0] = 1
     while q:
         x, y = q.popleft()
-        print_data("item", item)
-        print(x, y)
-        print_data("visited", visited)
         if x == n - 1 and y == m - 1:
             return visited[x][y]
 
