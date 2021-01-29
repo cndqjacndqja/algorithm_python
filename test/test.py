@@ -1,2 +1,1 @@
-data = input().split("+")
-print(data)
+print(10**1)
