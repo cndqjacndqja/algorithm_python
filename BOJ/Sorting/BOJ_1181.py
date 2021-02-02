@@ -8,6 +8,6 @@ for _ in range(n):
 
 data = list(set(data))
 
-data.sort(key=lambda x: (x[1],x[0]))
+data.sort(key=lambda x: (x[1], x[0]))
 for i in data:
     print(i[0])
