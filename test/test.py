@@ -1,10 +1,16 @@
-n = int(input())
+n, k=map(int,input().split())
+arr=[i for i in range(1, n+1)]
 
-count = 0
-for i in range(n+1):
-    for j in range(60):
-        for k in range(60):
-            if '3' in str(i) + str(j) + str(k):
-                count += 1
+ans=list()
+idx=0
 
-print(count)
+for i in range(n):
+  idx=(idx+k-1)%len(arr)
+  ans.append(arr.pop(idx))
+
+print("<", end='')
+for a in ans:
+  if a==ans[-1]:
+    print(a, end=">")
+  else:
+    print(a, end=', ')
