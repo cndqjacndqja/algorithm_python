@@ -26,20 +26,17 @@ def bfs(param_v):
                 q.append(i)
                 visited[i] = True
 
-
 dfs_visited = [False for _ in range(n + 1)]
 
 
 def dfs(param_v, visited):
-    q = deque()
-    q.append(param_v)
     visited[param_v] = True
     print(param_v, end=' ')
     for i in data[param_v]:
         if not visited[i]:
             dfs(i, visited)
 
-
+print(data)
 dfs(v, dfs_visited)
 print()
 bfs(v)
