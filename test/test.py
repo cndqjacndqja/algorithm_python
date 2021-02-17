@@ -1,41 +1,31 @@
-from collections import deque
-import sys
-input = sys.stdin.readline
+input_list = input().split()
+N = int(input_list[0])
+M = int(input_list[1])
+input_list_2 = input().split()
+line_list = []
+line_max = 0
+for i in range(N):
+    line_list.append(int(input_list_2[i]))
+    line_max = max(line_max, line_list[i])                          #input 처리 과정; 동시에 최댓값을 탐색
 
-n = int(input())
-graph = [[] for _ in range(n + 1)]
+def find_length(upper_length, lower_length, need_length):
+    upper = upper_length
+    lower = lower_length
+    best_length = 0
+    while (upper >= lower):
+        mid = (upper + lower) // 2
+        cur_sum = 0
+        for i in range(N):                                          #현재 높이에서 자를 경우 얼마만큼의 나무를 가져갈 수 있을지 계산
+            if line_list[i] > mid:
+                cur_sum += line_list[i] - mid
+            if cur_sum > need_length:
+                break
+        if cur_sum >= need_length:                                  #필요한 만큼 혹은 그 이상 잘라낸 경우; 더 높이 잘라도 됨
+            lower = mid + 1
+            if mid > best_length:                                   #만약 현재의 값이 최댓값이면 일단 이 값을 저장
+                best_length = mid
+        else:                                                       #너무 적게 잘라낸 경우; 더 낮게 잘라야 함
+            upper = mid - 1
+    return best_length
 
-# 인접 리스트 만들기
-for i in range(1, n + 1):
-    temp = list(map(int, input().rstrip().split()))
-    start = temp[0]
-    k = 1
-    while 1:
-        to = temp[k]
-        if to == -1:
-            break
-        cost = temp[k + 1]
-        graph[start].append((cost, to))
-        k += 2
-
-print(graph)
-def bfs(start):
-    q = deque()
-    q.append((0, start))
-    dis = [-1] * (n + 1) # -1은 아직 방문하지 않은 곳
-    dis[start] = 0
-    while q:
-        now_cost, v = q.popleft()
-        for new_cost, to in graph[v]:
-            if dis[to] == -1:  # 방문하지 않은 곳 거리값으로 수정
-                dis[to] = now_cost + new_cost
-                q.append((dis[to], to))
-    ans = max(dis) # start로부터 최대 거리에 있는 노드와의 거리
-    idx = dis.index(ans) # start로부터 최대 거리에 있는 노드 번호
-    return ans, idx
-
-
-ans = bfs(1)[1] # 임의의 노드에서 최대 거리에 있는 노드 v 찾기
-ans = bfs(ans)[0] # v와 u사이의 거리
-
-print(ans)
+print(find_length(line_max, 1, M))   
