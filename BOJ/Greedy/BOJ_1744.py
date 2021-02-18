@@ -1,5 +1,3 @@
-import bisect
-
 n = int(input())
 
 data =[]
