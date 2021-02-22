@@ -1,4 +1,2 @@
-while True:
-    for i in range(4):
-        print(i)
-        break
+result = ['' for _ in range(10001)]
+print(result)
