@@ -9,6 +9,3 @@ def solution(brown, yellow):
             if (b_garo * 2 + b_sero * 2) == brown and (y_garo * y_sero) == yellow:
                 if not b_garo + y_garo < b_sero + y_sero:
                     return [b_garo, b_sero + 2]
-
-
-print(solution(24, 24))
