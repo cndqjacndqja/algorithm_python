@@ -11,6 +11,7 @@ def solution(numbers):
                 result.append(int(i))
     return len(result)
 
+
 def sosu(num, result):
     if num == 0 or num == 1 or num in result:
         return False

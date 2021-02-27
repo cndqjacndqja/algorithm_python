@@ -1,6 +1,2 @@
-from itertools import permutations
-
-data = input().split()
-print(list(map(''.join, permutations(data))))
-
-
+x, y = map(ord, input().split())
+print(x, y)
