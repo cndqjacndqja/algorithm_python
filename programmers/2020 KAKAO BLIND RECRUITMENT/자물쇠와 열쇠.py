@@ -1,36 +1,44 @@
-def solution(key, lock):
-    stand_zip = find_lock(lock)
-    result = find_key(key, stand_zip)
-    print(result)
+# 90도 회전하기
+def rotation(arr):
+    n = len(arr)
+    ret = [[0] * n for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            ret[j][n - 1 - i] = arr[i][j]
+    return ret
 
 
-def find_stand_lock(lock):
-    for i in range(len(lock)):
-        for j in range(len(lock)):
-            if lock[i][j] == 0:
-                return i, j
+# 자물쇠로 열리는지 체크
+def check(startX, startY, key, lock, expendSize, start, end):
+    expendList = [[0] * expendSize for _ in range(expendSize)]
 
-
-def find_lock(lock):
-    stand_x, stand_y = find_stand_lock(lock)
-    stand_zip = []
-    for i in range(len(lock)):
-        for j in range(len(lock)):
-            if lock[i][j] == 0 and not stand_x == i and not stand_y == j:
-                stand_zip.append((stand_x - i, stand_y - j))
-    return stand_zip
-
-
-def find_key(key, stand_zip):
+    # expendList에 key대입.
     for i in range(len(key)):
         for j in range(len(key)):
-            if key[i][j] == 1:
-                for z in stand_zip:
-                    x, y = z
-                    if key[i - x][j - y] == 0:
-                        continue
+            expendList[startX + i][startY + j] += key[i][j]
+
+    # expecdList의 전체를 자물쇠의 해당 위치와 비교. 하나라도 맞지 않는다면 False return
+    for i in range(start, end):
+        for j in range(start, end):
+            expendList[i][j] += lock[i - start][j - start]
+            if expendList[i][j] != 1:
+                return False
+
+    return True
+
+
+def solution(key, lock):
+    start = len(key) - 1  # expendList에서 lock의 시작 지점
+    end = start + len(lock)  # expendList에서 lock이 끝나는 지점
+    expendSize = len(lock) + start * 2  # expendList 크기
+
+    # lock은 고정이고 key가 움직이는거!!!
+    for a in range(0, 4):
+        for i in range(end):
+            for j in range(end):
+                if check(i, j, key, lock, expendSize, start, end):
                     return True
+        key = rotation(key)
+
     return False
-
-
-solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]], [[1, 1, 1], [1, 1, 0], [1, 0, 1]])
