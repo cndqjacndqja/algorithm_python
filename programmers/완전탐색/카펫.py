@@ -1,8 +1,8 @@
 def solution(brown, yellow):
     for i in range(1, yellow + 1):
         if yellow % i == 0:
-            y_garo = yellow // i
-            y_sero = i
+            y_garo = yellow // i    # 가로길이
+            y_sero = i              # 세로길이
             b_garo = y_garo + 2
             b_sero = y_sero
 
