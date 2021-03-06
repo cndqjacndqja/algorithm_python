@@ -1,14 +1,28 @@
-import time
+# 이진 탐색 구현
 
-start_time = time.time()
-n = int(input())
-coin = list(map(int, input().split()))
-coin.sort()
-target = 1
-for c in coin:
-    if c <= target:
-        target += c
-    else:
-        break
-print(target)
-print(time.time() - start_time)
+# def binary_search(data, target):
+#     start = 0
+#     end = len(data)-1
+#
+#     while start <= end:
+#         mid = (start + end) // 2
+#
+#         if data[mid] == target:
+#             return mid
+#         if data[mid] < target:
+#             start = mid + 1
+#         elif data[mid] > target:
+#             end = mid - 1
+#     return None
+
+def binary_search(start, end, target, data):
+    if start > end:
+        return None
+    mid = (start+end) // 2
+    if data[mid] == target:
+        return mid
+    elif data[mid] < target:
+        binary_search(mid+1, end, target, data)
+    elif data[mid] > target:
+        binary_search(start, mid-1, target, data)
+
