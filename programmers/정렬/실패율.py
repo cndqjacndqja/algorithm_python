@@ -19,7 +19,7 @@ def solution(N, stages):
     result = []
     for i in data:
         result.append(i[0])
-    print(result)
+    return result
 
 
 solution(4, [4, 4, 4, 4, 4])
