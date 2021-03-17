@@ -6,8 +6,8 @@ def solution(words, queries):
     reverse_list_words = [[] for _ in range(100001)]
     for i in words:
         list_words[len(i)].append(i)
-    for i in words:
         reverse_list_words[len(i)].append(i[::-1])
+
     for i in range(100001):
         list_words[i].sort()
         reverse_list_words[i].sort()
