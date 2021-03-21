@@ -5,8 +5,14 @@ for _ in range(n):
     data.append(list(map(int, input().split())))
 
 
-for i in range(n-1, 0, -1):
-    day, pay = data[i][0], data[i][1]
-    if i+day-1 < n:
-        if sum(dp[i:i+day]) < pay:
-            dp[i+day-1] = pay
+def solve(i):
+    if i > n - 1:
+        return 0
+    ret = 0
+    if i + data[i][0] <= n:
+        ret = solve(i + data[i][0]) + data[i][1]
+    ret = max(ret, solve(i + 1))
+    return ret
+
+
+print(solve(0))
