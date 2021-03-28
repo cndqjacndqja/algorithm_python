@@ -15,12 +15,15 @@ def floyd():
         for a in range(1, n+1):
             for b in range(1, n+1):
                 data[a][b] = min(data[a][b], data[a][k]+data[k][b])
+    result = 0
+    for i in range(1, n+1):
+        count = 0
+        for j in range(1, n+1):
+            if data[i][j] != INF or data[j][i] != INF:
+                count += 1
+        if count == n:
+            result += 1
 
-    for i in range(1, n + 1):
-        for j in range(1, n + 1):
-            if data[i][j] == INF:
-                print(0, end=' ')
-            else:
-                print(data[i][j], end=' ')
-        print()
+    print(result)
+
 floyd()
