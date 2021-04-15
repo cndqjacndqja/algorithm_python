@@ -1,22 +1,19 @@
-n, m = map(int, input().split())
-data = list(map(int, input().split()))
-visited = [False for _ in range(n)]
-result = 0
+def solve(x, y, l):
+    global ans
+    ans = max(ans, l)
+    for d in range(4):
+        i, j = x + dx[d], y + dy[d]
+        if 0 <= i < r and 0 <= j < c and alpha[table[i][j]] == 0:
+            alpha[table[i][j]] = 1
+            solve(i, j, l + 1)
+            alpha[table[i][j]] = 0
 
 
-def dfs(cnt, idx, param_data):
-    global result
-    if cnt == 3:
-        if param_data <= m:
-            result = max(result, param_data)
-        return
-
-    for i in range(idx, n):
-        if not visited[i]:
-            visited[i] = True
-            dfs(cnt + 1, i + 1, param_data + data[i])
-            visited[i] = False
-
-
-dfs(0, 0, 0)
-print(result)
+r, c = map(int, input().split())
+table = [list(map(lambda x: ord(x) - 65, input().rstrip())) for _ in range(r)]
+dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)
+alpha = [0] * 26
+ans = 0
+alpha[table[0][0]] = 1
+solve(0, 0, 1)
+print(ans)
