@@ -1,19 +1,35 @@
-def solve(x, y, l):
-    global ans
-    ans = max(ans, l)
-    for d in range(4):
-        i, j = x + dx[d], y + dy[d]
-        if 0 <= i < r and 0 <= j < c and alpha[table[i][j]] == 0:
-            alpha[table[i][j]] = 1
-            solve(i, j, l + 1)
-            alpha[table[i][j]] = 0
+import heapq
 
 
-r, c = map(int, input().split())
-table = [list(map(lambda x: ord(x) - 65, input().rstrip())) for _ in range(r)]
-dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)
-alpha = [0] * 26
-ans = 0
-alpha[table[0][0]] = 1
-solve(0, 0, 1)
-print(ans)
+def solution(a, edges):
+    tree = [[] for _ in range(len(a))]
+    for i in edges:
+        x, y = i
+        tree[x].append(y)
+        tree[y].append(x)
+    data = []
+    data_a = []
+
+    for i in range(len(a)):
+        data.append([a[i], i])
+        data_a.append([a[i], i])
+    data.sort(reverse=True, key=lambda x:x[0])
+    count = 0
+    for i in range(len(a)):
+        if a[data[i][1]] == 0:
+            continue
+        for j in tree[data[i][1]]:
+            while a[data[i][1]] > 0 and a[j] != 0:
+                count += 1
+                a[data[i][1]] -= 1
+                a[j] += 1
+
+    if count == 0:
+        return -1
+    else:
+        return count
+
+
+
+
+print(solution([-5, 0, 2, 1, 2], [[0, 1], [3, 4], [2, 3], [0, 3]]))
