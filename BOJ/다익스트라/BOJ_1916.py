@@ -25,7 +25,7 @@ def dijkstra():
             continue
         for i in data[node]:
             cost = visited[node] + i[1]
-            if cost < visited[i[0]] + dis:
+            if cost < visited[i[0]]:
                 visited[i[0]] = cost
                 heappush(q, (cost, i[0]))
 
