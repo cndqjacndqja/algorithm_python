@@ -32,6 +32,7 @@ def solved():
     for i in range(1, n+1):
         start = dijkstra(i, x)
         end = dijkstra(x, i)
+        print(start, end)
         result[i] = start+end
 
     print(max(result))

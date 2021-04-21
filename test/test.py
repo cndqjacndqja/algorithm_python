@@ -1,27 +1,34 @@
-# BFS 벽을 최소 몇 개 부수어야 하는가?
-from collections import deque
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
+import sys
+from heapq import heappush, heappop
+input = sys.stdin.readline
+n, m, x = map(int, input().split())
+inf = 100000000
+s = [[] for i in range(n + 1)]
+dp = [inf] * (n + 1)
+s_r = [[] for i in range(n + 1)]
+dp_r = [inf] * (n + 1)
+def dijkstra(start, dp, s):
+    heap = []
+    dp[start] = 0
+    heappush(heap, [0, start])
+    while heap:
+        w, n = heappop(heap)
+        if dp[n] < w:
+            continue
+        for n_n, wei in s[n]:
+            n_w = wei + w
+            if n_w < dp[n_n]:
+                dp[n_n] = n_w
+                heappush(heap, [n_w, n_n])
+for i in range(m):
+    a, b, t = map(int, input().split())
+    s[a].append([b, t])
+    s_r[b].append([a, t])
+dijkstra(x, dp, s)
+dijkstra(x, dp_r, s_r)
+max_ = 0
+print(dp, dp_r)
+for i in range(1, n + 1):
+    max_ = max(max_, dp[i] + dp_r[i])
 
-m,n = map(int, input().split())
-arr = [ list(map(int, input())) for _ in range(n)]
-dist = [[-1] * m for _ in range(n)]  # 가중치
-
-q = deque()
-q.append((0,0))
-
-dist[0][0] = 0
-while q:
-    x,y = q.popleft()
-    for k in range(4):
-        nx = x + dx[k]
-        ny = y + dy[k]
-        if 0 <= nx < n and 0 <= ny < m:
-            if dist[nx][ny] == -1:
-                if arr[nx][ny] == 0:
-                    dist[nx][ny] = dist[x][y]
-                    q.appendleft((nx, ny))
-                else:
-                    dist[nx][ny] = dist[x][y] + 1
-                    q.append((nx, ny))
-print(dist[n-1][m-1])
+print(max_)
