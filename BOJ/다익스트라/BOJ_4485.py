@@ -1,4 +1,3 @@
-import copy
 from heapq import heappush, heappop
 
 dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
