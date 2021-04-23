@@ -1,42 +1,38 @@
-import heapq
+from heapq import heappush, heappop
 import sys
 
-
-def input():
-    return sys.stdin.readline().rstrip()
-
-
-''' 입력받는 과정 '''
-N = int(input())
-M = int(input())
-graph = [[] for _ in range(N + 1)]
-for _ in range(M):
-    fr, to, cost = map(int, input().split())
-    graph[fr].append((to, cost))
-FROM, TO = map(int, input().split())
-''' 변수 설정 '''
-distance = [float('inf') for _ in range(N + 1)]
-path = [[] for _ in range(N+1)]
-path[FROM].append(FROM)
-q = [(0,FROM)]
-heapq.heapify(q)
-while q:
-    now_cost, now = heapq.heappop(q)
-    if now_cost > distance[now]:
-        continue
-    if now == FROM:
-        distance[now] = 0
-    for next, next_cost in graph[now]:
-        path_cost = next_cost + now_cost
-        if path_cost < distance[next]:
-            distance[next] = path_cost
-            heapq.heappush(q, (path_cost, next))
-            path[next] = []
-            for p in path[now]:
-                path[next].append(p)
-            path[next].append(next)
-print(distance[TO])
-print(len(path[TO]))
-print(' '.join(map(str,path[TO]))) # 경로 출력
+input = sys.stdin.readline
+inf = 100000000
 
 
+def dijkstra(start):
+    heap = []
+    heappush(heap, [0, start])
+    dp = [inf for i in range(n + 1)]
+    dp[start] = 0
+    while heap:
+        we, nu = heappop(heap)
+        for ne, nw in s[nu]:
+            wei = we + nw
+            if dp[ne] > wei:
+                dp[ne] = wei
+                heappush(heap, [wei, ne])
+    return dp
+
+
+t = int(input())
+for _ in range(t):
+    n, d, start = map(int, input().split())
+    s = [[] for i in range(n + 1)]
+    for i in range(d):
+        a, b, c = map(int, input().split())
+        s[b].append([a, c])
+    dp = dijkstra(start)
+    max_dp = 0
+    cnt = 0
+    for i in dp:
+        if i != inf:
+            if max_dp < i:
+                max_dp = i
+            cnt += 1
+    print(cnt, max_dp)
