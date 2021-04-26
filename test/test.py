@@ -1,38 +1,40 @@
 from heapq import heappush, heappop
-import sys
 
-input = sys.stdin.readline
-inf = 100000000
+INF = int(1e9)
 
 
 def dijkstra(start):
-    heap = []
-    heappush(heap, [0, start])
-    dp = [inf for i in range(n + 1)]
-    dp[start] = 0
-    while heap:
-        we, nu = heappop(heap)
-        for ne, nw in s[nu]:
-            wei = we + nw
-            if dp[ne] > wei:
-                dp[ne] = wei
-                heappush(heap, [wei, ne])
-    return dp
+    q = []
+    heappush(q, (0, start))
+    visited = [1 for _ in range(n + 1)]
+    distance = [INF for _ in range(n + 1)]
+    distance[start] = 0
+
+    while q:
+        dis, node = heappop(q)
+        for i in data[node]:
+            cost = dis + i[1]
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heappush(q, (cost, i[0]))
+
+    max_dis = 0
+    count = 0
+    for i in distance:
+        if i != INF:
+            max_dis = max(max_dis, i)
+            count += 1
+
+    index = distance.index(max_dis)
+    print(count, max_dis)
 
 
-t = int(input())
-for _ in range(t):
-    n, d, start = map(int, input().split())
-    s = [[] for i in range(n + 1)]
-    for i in range(d):
-        a, b, c = map(int, input().split())
-        s[b].append([a, c])
-    dp = dijkstra(start)
-    max_dp = 0
-    cnt = 0
-    for i in dp:
-        if i != inf:
-            if max_dp < i:
-                max_dp = i
-            cnt += 1
-    print(cnt, max_dp)
+for _ in range(int(input())):
+    n, d, c = map(int, input().split())
+    data = [[] for _ in range(n + 1)]
+
+    for _ in range(d):
+        a, b, s = map(int, input().split())
+        data[b].append((a, s))
+
+    dijkstra(c)

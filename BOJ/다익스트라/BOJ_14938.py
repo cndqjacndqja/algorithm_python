@@ -9,14 +9,12 @@ for _ in range(r):
     data[a].append((b, c))
     data[b].append((a, c))
 
+
 def dijkstra(start):
     q = []
-    distance = [INF for _ in range(n+1)]
+    distance = [INF for _ in range(n + 1)]
     heappush(q, (0, start))
-    sum_data = item_value[start]
     distance[start] = 0
-    visited = [False for _ in range(n+1)]
-    visited[start] = True
 
     while q:
         dis, node = heappop(q)
@@ -26,18 +24,22 @@ def dijkstra(start):
             if cost < distance[i[0]] and cost <= m:
                 distance[i[0]] = cost
                 heappush(q, (cost, i[0]))
-                sum_data += item_value[i[0]]
 
+    return distance
 
-    return sum_data
 
 def solved():
-    result = []
-    for i in range(1, n+1):
-        result.append(dijkstra(i))
-    print(max(result))
+    max_value = -INF
+    for i in range(1, n + 1):
+        sum_data = 0
+        result = dijkstra(i)
+
+        for j in range(1, n+1):
+            if result[j] <= m:
+                sum_data += item_value[j]
+
+
+        max_value = max(max_value, sum_data)
+    print(max_value)
 
 solved()
-
-
-
