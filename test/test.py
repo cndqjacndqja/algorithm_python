@@ -1,30 +1,41 @@
 from _collections import deque
 
-for _ in range(int(input())):
-    n, k = map(int, input().split())
-    time = [0] + list(map(int, input().split()))
-    data = [[] for _ in range(n + 1)]
-    indegree = [0 for _ in range(n + 1)]
-    dp = [0 for _ in range(n + 1)]
+n = int(input())
+data = [[] for _ in range(n + 1)]
+indegree = [0 for _ in range(n + 1)]
+time = [0 for _ in range(n + 1)]
 
-    for _ in range(k):
-        a, b = map(int, input().split())
-        data[a].append(b)
-        indegree[b] += 1
+for i in range(1, n + 1):
+    detail_data = list(map(int, input().split()))
+    detail_data = detail_data[:len(detail_data) - 1]
+    time[i] = detail_data[0]
+    for j in range(1, len(detail_data)):
+        data[detail_data[j]].append(i)
+        indegree[i] += 1
 
+
+def topology_sort():
     q = deque()
+    dp = [0 for _ in range(n+1)]
+    for i in range(1, n+1):
+        dp[i] = time[i]
     for i in range(1, n + 1):
         if indegree[i] == 0:
-            q.append(i)
-            dp[i] = time[i]
+            q.append((i, 0))
 
     while q:
-        node = q.popleft()
+        new_node, node = q.popleft()
+        dp[new_node] = max(dp[new_node], dp[node] + time[new_node])
 
-        for i in data[node]:
+        for i in data[new_node]:
             indegree[i] -= 1
-            dp[i] = max(dp[node] + time[i], dp[i])
+
             if indegree[i] == 0:
-                q.append(i)
-    goal = int(input())
-    print(dp[goal])
+                q.append((i, new_node))
+
+
+    for i in range(1, n+1):
+        print(dp[i])
+
+
+topology_sort()

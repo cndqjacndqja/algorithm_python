@@ -16,24 +16,25 @@ for i in range(1, n + 1):
 
 def topology_sort():
     q = deque()
-    dp = [0 for _ in range(n + 1)]
-    for i in range(1, n + 1):
+    dp = [0 for _ in range(n+1)]
+    for i in range(1, n+1):
         dp[i] = time[i]
     for i in range(1, n + 1):
         if indegree[i] == 0:
             q.append((i, 0))
 
     while q:
-        node = q.popleft()
+        new_node, node = q.popleft()
 
-        for i in data[node]:
+        for i in data[new_node]:
             indegree[i] -= 1
-            dp[i] = max(dp[node] + time[i], dp[i])
+            dp[i] = max(dp[new_node] + time[i], dp[i])
 
             if indegree[i] == 0:
-                q.append(i)
+                q.append((i, new_node))
 
-    for i in range(1, n + 1):
+
+    for i in range(1, n+1):
         print(dp[i])
 
 
