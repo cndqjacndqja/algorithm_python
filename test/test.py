@@ -1,41 +1,41 @@
 from _collections import deque
 
-n = int(input())
+n, m = map(int, input().split())
 data = [[] for _ in range(n + 1)]
 indegree = [0 for _ in range(n + 1)]
-time = [0 for _ in range(n + 1)]
+flag = True
+for _ in range(m):
+    pd_data = list(map(int, input().split()))
+    for i in range(1, len(pd_data) - 1):
+        if pd_data[i] in data[pd_data[i + 1]]:
+            flag = False
 
-for i in range(1, n + 1):
-    detail_data = list(map(int, input().split()))
-    detail_data = detail_data[:len(detail_data) - 1]
-    time[i] = detail_data[0]
-    for j in range(1, len(detail_data)):
-        data[detail_data[j]].append(i)
-        indegree[i] += 1
+        data[pd_data[i]].append(pd_data[i + 1])
+        indegree[pd_data[i + 1]] += 1
+
+result = []
 
 
 def topology_sort():
     q = deque()
-    dp = [0 for _ in range(n+1)]
-    for i in range(1, n+1):
-        dp[i] = time[i]
     for i in range(1, n + 1):
         if indegree[i] == 0:
-            q.append((i, 0))
+            q.append(i)
 
     while q:
-        new_node, node = q.popleft()
-        dp[new_node] = max(dp[new_node], dp[node] + time[new_node])
+        node = q.popleft()
+        result.append(node)
 
-        for i in data[new_node]:
+        for i in data[node]:
             indegree[i] -= 1
-
             if indegree[i] == 0:
-                q.append((i, new_node))
-
-
-    for i in range(1, n+1):
-        print(dp[i])
+                q.append(i)
 
 
 topology_sort()
+if flag:
+    for i in result:
+        print(i)
+
+else:
+    print(0)
