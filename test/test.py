@@ -1,2 +1,3 @@
-print(ord("a"))
-print(int("2"))
+a = 1
+a = None
+print(a)
