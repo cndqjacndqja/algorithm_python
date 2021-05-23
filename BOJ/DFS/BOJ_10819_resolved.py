@@ -7,10 +7,8 @@ result = []
 
 
 def dfs(idx):
-    global test
     if idx == n - 1:
         result.append(cal_solution())
-        print(orders)
         return
 
     for i in range(n):
