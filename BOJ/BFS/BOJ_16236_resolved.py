@@ -49,10 +49,12 @@ def bfs_length(x, y):
 
         for i in range(4):
             nx, ny = pop_x + dx[i], pop_y + dy[i]
-            if 0 <= nx < n and 0 <= ny < n and visited[nx][ny] == -1 and (data[nx][ny] <= shark_size or data[nx][ny] == INF):
+            if 0 <= nx < n and 0 <= ny < n and visited[nx][ny] == -1 and (
+                    data[nx][ny] <= shark_size or data[nx][ny] == INF):
                 q.append((nx, ny))
                 visited[nx][ny] = visited[pop_x][pop_y] + 1
     return INF
+
 
 def solved():
     global shark_x, shark_y, shark_size
@@ -72,13 +74,10 @@ def solved():
             result += length
             count += 1
             if count == shark_size:
-                shark_size+=1
+                shark_size += 1
                 count = 0
 
     print(result)
 
+
 solved()
-
-
-# 먹고 커지기
-#
