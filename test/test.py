@@ -1,15 +1,13 @@
-from _collections import deque
+x = int(input())
+y=""
+while x > 0:
+    y = str(x % 2) + y
+    x //= 2
+print(y)
 
-dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
-n, m = map(int, input().split())
-
-data = [list(map(int, input())) for _ in range(n)]
-visited = [[-1 for _ in range(m)] for _ in range(n)]
-
-
-def bfs():
-
-
-
-bfs()
-
+data = [0, 0, 0, 0]
+count = 0
+for i in range(len(y)-1, -1, -1):
+    data[count] = int(y[i])
+    count+= 1
+print(data)
