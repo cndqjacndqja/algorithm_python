@@ -5,9 +5,8 @@ data = list(map(int, input().split()))
 result = []
 
 
-
 def dfs(idx):
-    if idx == n - 1:
+    if idx == n:
         result.append(cal_solution())
         return
 
@@ -21,7 +20,6 @@ def dfs(idx):
 
 def cal_solution():
     sum = 0
-    print(orders)
     for i in range(n - 1):
         sum += abs(data[orders[i]] - data[orders[i + 1]])
     return sum
