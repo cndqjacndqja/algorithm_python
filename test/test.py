@@ -1,24 +1,14 @@
 import sys
-arr= sys.stdin.readline().replace('\n','')
-m=int(sys.stdin.readline())
-idx = len(arr)
+N = int(sys.stdin.readline())
 
-for _ in range(m):
-    val = input()
-    if val == 'L':
-        if idx !=0:
-            idx -= 1
-    elif val == 'D':
-        if idx != len(arr):
-            idx += 1
-    elif val == 'B':
-        if idx !=0:
-            tmp = arr[:idx-1] + arr[idx:]
-            arr = tmp
-            idx -= 1
-    else: #P $
-        p = val[2]
-        tmp = arr[:idx] + p + arr[idx:]
-        arr = tmp
-        idx += 1
-print(arr)
+dp = [0] * 100001
+
+for i in range(1, N + 1):
+    dp[i] = i
+    for j in range(1, i):
+        if (j * j) > i:
+            break
+        if dp[i] > dp[i - j * j] + 1:
+            dp[i] = dp[i - j * j] + 1
+print(dp)
+print(dp[N])
