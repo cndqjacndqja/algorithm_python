@@ -1,5 +1,6 @@
 result_data = 0
 
+
 def cal(data, high):
     result = 0
     for i in data:
@@ -17,12 +18,9 @@ def binary_search(start, end, data, m):
 
     if result >= m:
         result_data = mid
-        binary_search(mid+1, end, data, m)
+        binary_search(mid + 1, end, data, m)
     else:
         binary_search(start, mid - 1, data, m)
-
-
-
 
 
 def solved():
@@ -32,7 +30,5 @@ def solved():
     binary_search(1, max(data), data, m)
     print(result_data)
 
+
 solved()
-
-
-
