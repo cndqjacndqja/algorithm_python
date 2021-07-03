@@ -10,4 +10,3 @@ def solution(s):
         return 1
     else:
         return 0
-solution("cdcd")
