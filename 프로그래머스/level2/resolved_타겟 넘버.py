@@ -1,16 +1,15 @@
 result = []
 
-def dfs(check, idx, cnt, nums, target, test):
+def dfs(check, idx, cnt, nums, target, baseCase):
     global count
-    if cnt == test:
+    if cnt == baseCase:
         calcul(check, nums, target)
-        print(check)
         return
 
     for i in range(idx, len(check)):
         if not check[i]:
             check[i] = True
-            dfs(check, i, cnt + 1, nums, target, test)
+            dfs(check, i, cnt + 1, nums, target, baseCase)
             check[i] = False
 
 
