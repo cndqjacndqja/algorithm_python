@@ -1,2 +1,2 @@
-test = [1, 2, 3]
-print(test[-2])
+for i in range(26):
+    print(chr(65+i))
